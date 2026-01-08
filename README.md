@@ -26,7 +26,3 @@ and presents insights in a **single, clear dashboard image**.
 
 ## Dashboard Preview
 ![Chemical Plant Dashboard](dashboard/chemical_plant_dashboard.png)
-
-## How to Run
-```bash
-main.py
