@@ -1,6 +1,3 @@
-# chemical plant analytics dashboard
-Chemical plant operations analytics dashboard using SQL and Python
-
 # Chemical Plant Operations Analytics Dashboard
 
 ## Project Overview
@@ -32,4 +29,4 @@ and presents insights in a **single, clear dashboard image**.
 
 ## How to Run
 ```bash
-python main.py
+main.py
