@@ -1,8 +1,3 @@
-# =========================================
-# CHEMICAL PLANT OPERATIONS DASHBOARD
-# CLEAN & MINIMAL VERSION
-# =========================================
-
 import matplotlib
 matplotlib.use("Agg")
 
@@ -11,14 +6,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-# -----------------------------
 # FOLDER
-# -----------------------------
+
 os.makedirs("dashboard", exist_ok=True)
 
-# -----------------------------
 # DATABASE CONNECTION
-# -----------------------------
+
 conn = sqlite3.connect("data/chemical_plant.db")
 
 kpi = pd.read_sql("""
@@ -71,18 +64,16 @@ GROUP BY status;
 
 conn.close()
 
-# -----------------------------
 # DASHBOARD SETUP
-# -----------------------------
+
 fig = plt.figure(figsize=(20, 12))
 fig.suptitle(
     "Chemical Plant Operations Analytics Dashboard",
     fontsize=22, fontweight="bold"
 )
 
-# -----------------------------
-# KPI TEXT (NO BOXES)
-# -----------------------------
+# KPI TEXT
+
 kpi_titles = ["Total Production (tons)", "Average Yield (%)",
               "Avg Energy (kWh/ton)", "Total Downtime (hrs)"]
 kpi_values = [
@@ -100,9 +91,8 @@ for i in range(4):
     ax.text(0.5, 0.30, kpi_titles[i],
             fontsize=11, ha="center", va="center")
 
-# -----------------------------
 # PRODUCTION BY UNIT
-# -----------------------------
+
 ax5 = plt.subplot(3, 4, 5)
 ax5.bar(production_by_unit["unit_name"],
         production_by_unit["production"],
@@ -111,9 +101,8 @@ ax5.set_title("Production by Unit", fontsize=11)
 ax5.set_ylabel("Tons", fontsize=10)
 ax5.tick_params(axis="x", labelrotation=15, labelsize=9)
 
-# -----------------------------
 # ENERGY BY UNIT
-# -----------------------------
+
 ax6 = plt.subplot(3, 4, 6)
 ax6.bar(energy_by_unit["unit_name"],
         energy_by_unit["energy"],
@@ -122,9 +111,8 @@ ax6.set_title("Energy Consumption by Unit", fontsize=11)
 ax6.set_ylabel("kWh/ton", fontsize=10)
 ax6.tick_params(axis="x", labelrotation=15, labelsize=9)
 
-# -----------------------------
 # DOWNTIME BY UNIT
-# -----------------------------
+
 ax7 = plt.subplot(3, 4, 7)
 ax7.bar(downtime_by_unit["unit_name"],
         downtime_by_unit["downtime"],
@@ -133,9 +121,8 @@ ax7.set_title("Downtime by Unit", fontsize=11)
 ax7.set_ylabel("Hours", fontsize=10)
 ax7.tick_params(axis="x", labelrotation=15, labelsize=9)
 
-# -----------------------------
 # QUALITY STATUS
-# -----------------------------
+
 ax8 = plt.subplot(3, 4, 8)
 ax8.pie(
     quality_status["count"],
@@ -146,9 +133,8 @@ ax8.pie(
 )
 ax8.set_title("Quality Status", fontsize=11)
 
-# -----------------------------
 # MONTHLY PRODUCTION TREND
-# -----------------------------
+
 ax9 = plt.subplot(3, 1, 3)
 ax9.plot(
     monthly_production["month"],
